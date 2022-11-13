@@ -61,6 +61,7 @@ def fetch_family():
         for i in relation['wife/daughter']:
          if(len(i)>0):
           tree.create_node(i,i,parent=name)
+        open('tree.txt', 'w').close()  
         tree.save2file('tree.txt')  
 #         return(jsonify(f'{relation}',f'{family_members}'))
         return send_file('tree.txt')
