@@ -4,7 +4,7 @@ from pandas import DataFrame
 from flask_cors import CORS,cross_origin
 from flask import jsonify
 from flask import send_file
-# from treelib import Node, Tree
+from treelib import Node, Tree
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -52,18 +52,18 @@ def fetch_family():
         coll = pymongo.collection.Collection(db,state)
         df = DataFrame(list(coll.find()))
         relation,family_members=family(name,voter_id,df)
-#         tree = Tree()
-#         tree.create_node(relation['father'],relation['father'])  # No parent means its the root node
-#         tree.create_node(name,name,parent=relation['father'])
-#         for i in relation['son']:
-#          if(len(i)>0):
-#            tree.create_node(i,i,parent=name)
-#         for i in relation['wife/daughter']:
-#          if(len(i)>0):
-#           tree.create_node(i,i,parent=name)
-#         tree.save2file('tree.txt')  
-        return(jsonify(f'{relation}',f'{family_members}'))
-#         return send_file('tree.txt')
+        tree = Tree()
+        tree.create_node(relation['father'],relation['father'])  # No parent means its the root node
+        tree.create_node(name,name,parent=relation['father'])
+        for i in relation['son']:
+         if(len(i)>0):
+           tree.create_node(i,i,parent=name)
+        for i in relation['wife/daughter']:
+         if(len(i)>0):
+          tree.create_node(i,i,parent=name)
+        tree.save2file('tree.txt')  
+#         return(jsonify(f'{relation}',f'{family_members}'))
+        return send_file('tree.txt')
 
 
 if __name__=="__main__":
