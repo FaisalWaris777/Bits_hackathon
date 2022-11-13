@@ -5,7 +5,6 @@ from flask_cors import CORS,cross_origin
 from flask import jsonify
 from flask import send_file
 from treelib import Node, Tree
-import os
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
