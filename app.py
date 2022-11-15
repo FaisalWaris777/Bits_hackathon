@@ -5,12 +5,15 @@ from flask_cors import CORS,cross_origin
 from flask import jsonify
 from flask import send_file
 from treelib import Node, Tree
-
+from dotenv import load_dotenv
+import os
+load_dotenv()
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
 CORS(app)
 
-CONNECTION_STRING = "mongodb+srv://vishal:OjaDyG4Mh29wY97Q@cluster0.drpoeko.mongodb.net/?retryWrites=true&w=majority"
+CONNECTION_STRING = os.getenv("mongoURI")
+print(os.getenv("mongoURI"))
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('test')
 
