@@ -16,7 +16,7 @@ db = client.get_database('test')
 
 def family(name,voter_id,df):
     relation={}
-    index=df[df['name']==name].index
+    index=df[df['voter_id']==voter_id].index
     house=df.iloc[index[0]]['house_number']
     if(df.iloc[index[0]]['sex']=='FEMALE'):
        relation['father']=df.iloc[index[0]]['father/husband']
@@ -51,7 +51,10 @@ def fetch_family():
         age=request_data['age']
         coll = pymongo.collection.Collection(db,state)
         df = DataFrame(list(coll.find()))
-        relation,family_members=family(name,voter_id,df)
+        try:
+          relation,family_members=family(name,voter_id,df)
+        except:
+          return("Data not found") 
         tree = Tree()
         tree.create_node(relation['father'],relation['father'])  # No parent means its the root node
         tree.create_node(name,name,parent=relation['father'])
