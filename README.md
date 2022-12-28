@@ -1,4 +1,6 @@
 # Bits_hackathon
+![Design Thinking Ideation Whiteboard in Green Red Yellow Basic Style](https://user-images.githubusercontent.com/77573875/209804680-d121ed90-3412-48ed-aba6-2d9e8e3baf7a.png)
+
 Our project aims to convert the data available from the electoral database into a computer readable format that can be easily stored in the database and later on used to find the family tree of an individual along with labeled relations.
 
 Conversion of PDF into BSON using OCR (Optical Character Recognition) :
